@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace UnitTestIntro
 {
     public interface IEmailValidationService
@@ -16,7 +11,6 @@ namespace UnitTestIntro
         public bool Valid(string emailAddress)
         {
             return true;
-            //Call external web service
         }
     }
 }
