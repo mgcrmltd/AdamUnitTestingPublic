@@ -17,7 +17,6 @@ namespace UnitTestIntro
     {
         private const int MinimumFirstNameLength = 2;
         private const int MinimumLastNameLength = 2;
-<<<<<<< HEAD
         private IEmailValidationService _emailaValidationService;
 
         public ValidateNewUserService()
@@ -28,12 +27,6 @@ namespace UnitTestIntro
         public bool Email(string email)
         {
             return _emailaValidationService.Valid(email);
-=======
-
-        public bool Email(string email)
-        {
-            throw new NotImplementedException();
->>>>>>> main
         }
 
         public bool FirstName(string firstname)
