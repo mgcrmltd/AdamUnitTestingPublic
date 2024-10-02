@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace UnitTestIntro
 {
     public interface IValidateNewUserService
@@ -17,10 +12,16 @@ namespace UnitTestIntro
     {
         private const int MinimumFirstNameLength = 2;
         private const int MinimumLastNameLength = 2;
+        private IEmailValidationService _emailaValidationService;
+
+        public ValidateNewUserService()
+        {
+            _emailaValidationService = new EmailValidationService();
+        }
 
         public bool Email(string email)
         {
-            throw new NotImplementedException();
+            return _emailaValidationService.Valid(email);
         }
 
         public bool FirstName(string firstname)
