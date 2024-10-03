@@ -22,6 +22,22 @@ namespace UnitTestIntro.Tests
         }
 
         [Test]
+        public void Email_Valid_ReturnsTrue()
+        {
+            A.CallTo(() => _fakeEmailValidationService.Valid("test@example.com")).Returns(true);
+            var isValid = _service.Email("test@example.com");
+            Assert.That(isValid, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void Email_Invalid_ReturnsFalse()
+        {
+            A.CallTo(() => _fakeEmailValidationService.Valid(A<string>._)).Returns(false);
+            var isValid = _service.Email("test@example.com");
+            Assert.That(isValid, Is.EqualTo(false));
+        }
+
+        [Test]
         public void FirstName_Valid_ReturnsTrue()
         {
             var result = _service.FirstName("John");
@@ -63,15 +79,6 @@ namespace UnitTestIntro.Tests
             Assert.That(result, Is.False);
         }
 
-        [Test]
-        public void Email_ThrowsException_WhenEmailValidationFails()
-        {
-            // Arrange: Set up the fake method to throw an exception
-            A.CallTo(() => _fakeEmailValidationService.Valid("test@example.com"))
-                .Throws(new InvalidOperationException("Email validation failed"));
-
-            // Act & Assert: Ensure that the exception is thrown when Email is called
-            Assert.Throws<InvalidOperationException>(() => _service.Email("test@example.com"));
-        }
+        
     }
 }

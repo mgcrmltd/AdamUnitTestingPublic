@@ -13,6 +13,11 @@
         private const int MinimumLastNameLength = 2;
         private readonly IEmailValidationService _emailValidationService;
 
+        public ValidateNewUserService()
+        {
+            _emailValidationService = new EmailValidationService();
+        }
+
         // Updated constructor to accept IEmailValidationService
         public ValidateNewUserService(IEmailValidationService emailValidationService)
         {
