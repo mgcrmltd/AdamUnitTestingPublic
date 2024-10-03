@@ -1,5 +1,4 @@
-﻿
-namespace UnitTestIntro
+﻿namespace UnitTestIntro
 {
     public interface IValidateNewUserService
     {
@@ -12,29 +11,31 @@ namespace UnitTestIntro
     {
         private const int MinimumFirstNameLength = 2;
         private const int MinimumLastNameLength = 2;
-        private IEmailValidationService _emailaValidationService;
+        private readonly IEmailValidationService _emailValidationService;
 
-        public ValidateNewUserService()
+        // Updated constructor to accept IEmailValidationService
+        public ValidateNewUserService(IEmailValidationService emailValidationService)
         {
-            _emailaValidationService = new EmailValidationService();
+            _emailValidationService = emailValidationService;
         }
 
+        // Updated Email method
         public bool Email(string email)
         {
-            return _emailaValidationService.Valid(email);
+            return _emailValidationService.Valid(email);
         }
 
         public bool FirstName(string firstname)
         {
             if (string.IsNullOrEmpty(firstname)) return false;
-            if(firstname.Length < MinimumFirstNameLength) return false;
+            if (firstname.Length < MinimumFirstNameLength) return false;
             return true;
         }
 
         public bool LastName(string lastname)
         {
-            if(string.IsNullOrEmpty(lastname)) return false;
-            if(lastname.Length < MinimumLastNameLength) return false;
+            if (string.IsNullOrEmpty(lastname)) return false;
+            if (lastname.Length < MinimumLastNameLength) return false;
             return true;
         }
     }
